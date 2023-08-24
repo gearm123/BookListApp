@@ -1,0 +1,147 @@
+{
+  "data": [
+    {
+      "title": "Memoirs of a Geisha",
+      "body": "Arthur Golden",
+      "rating": 4.5,
+      "placeholderColor": {
+        "red": 195,
+        "green": 186,
+        "blue": 177
+      },
+      "url": "https://i.postimg.cc/HsQ5bnDj/Memorias-de-una-Geisha.jpg"
+    },
+    {
+      "title": "Obama's Wars",
+      "body": "Bob Woodword",
+      "rating": 4,
+      "placeholderColor": {
+        "red": 176,
+        "green": 119,
+        "blue": 97
+      },
+      "url": "https://i.postimg.cc/nzyjDb3v/Obama-s-Wars.jpg"
+    },
+    {
+      "title": "The Girl with the Pearl Earring",
+      "body": "Tracy Chevalier",
+      "rating": 3.5,
+      "placeholderColor": {
+        "red": 161,
+        "green": 126,
+        "blue": 66
+      },
+      "url": "https://i.postimg.cc/XYsrgy2N/The-Girl-with-the-Pearl-Earring.jpg"
+    },
+    {
+      "title": "iCon: Steve Jobs",
+      "body": "Jeffrey S. Young and William L. Simon",
+      "rating": 4.5,
+      "placeholderColor": {
+        "red": 202,
+        "green": 118,
+        "blue": 46
+      },
+      "url": "https://i.postimg.cc/kMYgVdhz/icon-steve-jobs.jpg"
+    },
+    {
+      "title": "The Lord of the Rings",
+      "body": "J R R Tolkien",
+      "rating": 5,
+      "placeholderColor": {
+        "red": 170,
+        "green": 130,
+        "blue": 56
+      },
+      "url": "https://i.postimg.cc/vZkn5V2R/the-lord-of-the-rings.jpg"
+    },
+    {
+      "title": "Kotlin in Action",
+      "body": "Dmitry Jemerovּ, Svetlana Isakova",
+      "rating": 3,
+      "placeholderColor": {
+        "red": 182,
+        "green": 176,
+        "blue": 80
+      },
+      "url": "https://i.postimg.cc/HxqH2pDk/kotlin-in-action.jpg"
+    },
+    {
+      "title": "Android Hacker's Handbook",
+      "body": "Joshua J. Drake",
+      "rating": 5,
+      "placeholderColor": {
+        "red": 230,
+        "green": 166,
+        "blue": 16
+      },
+      "url": "https://i.postimg.cc/d35bfvgC/Android-Hacker-s-Handbook.jpg"
+    },
+    {
+      "title": "Design Patterns : Elements of Reusable Object-Oriented Software",
+      "body": "Erich Gamm",
+      "rating": 2.5,
+      "placeholderColor": {
+        "red": 180,
+        "green": 136,
+        "blue": 86
+      },
+      "url": "https://i.postimg.cc/WpxChWTT/Design-Patterns-Elements-of-Reusable-Object-Oriented-Software.jpg"
+    },
+    {
+      "title": "The Great Gatsby",
+      "body": "F. Scott Fitzgerald",
+      "rating": 3,
+      "placeholderColor": {
+        "red": 28,
+        "green": 56,
+        "blue": 131
+      },
+      "url": "https://i.postimg.cc/d1hvKhmB/The-Great-Gatsby.jpg"
+    },
+    {
+      "title": "Moby Dick",
+      "body": "Herman Melville",
+      "rating": 4,
+      "placeholderColor": {
+        "red": 110,
+        "green": 116,
+        "blue": 186
+      },
+      "url": "https://i.postimg.cc/CKHnf6Wt/Moby-Dick.jpg"
+    },
+    {
+      "title": "Mobile Design Pattern Gallery",
+      "body": "Theresa Neil",
+      "rating": 4.5,
+      "placeholderColor": {
+        "red": 80,
+        "green": 36,
+        "blue": 6
+      },
+      "url": "https://i.postimg.cc/RhTt5pTK/Mobile-Design-Pattern-Gallery-Ui-Patterns-for-Mobile-Applications.jpg"
+    },
+    {
+      "title": "The Handmaid's Tale",
+      "body": "Margaret Atwood",
+      "rating": 3.5,
+      "placeholderColor": {
+        "red": 89,
+        "green": 152,
+        "blue": 73
+      },
+      "url": "https://i.postimg.cc/G3fgH1Hg/The-Handmaid-s-Tale.jpg"
+    },
+    {
+      "title": "Hamlet",
+      "body": "William Shakespeare",
+      "rating": 5,
+      "placeholderColor": {
+        "red": 179,
+        "green": 197,
+        "blue": 64
+      },
+      "url": "https://i.postimg.cc/vHVvSg3b/Hamlet.jpg"
+    }
+  ]
+}
