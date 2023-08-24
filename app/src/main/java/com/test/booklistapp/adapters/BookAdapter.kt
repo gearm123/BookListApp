@@ -91,11 +91,12 @@ open class BookAdapter :
                     filterPattern = ""
                     bookList
                 } else {
-                    filterPattern = constraint.toString().lowercase().trim();
+                    filterPattern = constraint.toString().lowercase(Locale.ROOT).trim();
                     val filteredList = ArrayList<Book>()
                     bookList
                         .filter {
-                            (it.title.contains(constraint!!))
+                            (it.title.lowercase(Locale.ROOT).contains(constraint!!.toString()
+                                .lowercase(Locale.ROOT)))
 
                         }
                         .forEach { filteredList.add(it) }
@@ -120,7 +121,7 @@ open class BookAdapter :
     private fun setTitleText(itemView: Book, titleTv: TextView) {
         if (filterPattern != "") {
             val startPos: Int =
-                itemView.title.lowercase(Locale.US).indexOf(filterPattern.toString().lowercase())
+                itemView.title.lowercase(Locale.ROOT).indexOf(filterPattern.toString().lowercase(Locale.ROOT))
             val endPos = startPos + filterPattern.length
             if (startPos != -1) {
                 val spannable: Spannable = SpannableString(itemView.title)
