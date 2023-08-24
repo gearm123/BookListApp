@@ -1,5 +1,11 @@
 package com.test.booklistapp.adapters
 
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.TextAppearanceSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.test.booklistapp.R
 import com.test.booklistapp.model.Book
+import java.util.*
 
 
 open class BookAdapter :
@@ -15,6 +22,7 @@ open class BookAdapter :
 
     var bookList: ArrayList<Book> = ArrayList()
     var bookListFiltered: ArrayList<Book> = ArrayList()
+    var filterPattern: CharSequence = ""
 
 
     inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,14 +37,10 @@ open class BookAdapter :
             icon = itemView.findViewById(R.id.book_icon)
             rating = itemView.findViewById(R.id.book_rating)
 
-
-            //TODO: add toast with position
-            itemView.setOnClickListener {
-            }
         }
 
         fun bind(result: Book) {
-            title.text = result.title
+            setTitleText(result, title)
             body.text = result.body
             Picasso.with(icon.context).load(result.downloadUrl).into(icon);
             rating.rating = result.rating.toFloat()
@@ -52,7 +56,16 @@ open class BookAdapter :
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.bind(bookListFiltered[position])
+        holder.itemView.setOnClickListener {
+            Toast.makeText(
+                holder.itemView.context,
+                "Book ${bookListFiltered[position].title} is chosen at index $position ",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        }
     }
+
 
     override fun getItemCount(): Int = bookListFiltered.size
 
@@ -63,6 +76,7 @@ open class BookAdapter :
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
+
     fun addData(list: MutableList<Book>) {
         bookList = list as ArrayList<Book>
         bookListFiltered = bookList
@@ -73,7 +87,11 @@ open class BookAdapter :
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charString = constraint?.toString() ?: ""
-                if (charString.isEmpty()) bookListFiltered = bookList else {
+                bookListFiltered = if (charString.isEmpty()) {
+                    filterPattern = ""
+                    bookList
+                } else {
+                    filterPattern = constraint.toString().lowercase().trim();
                     val filteredList = ArrayList<Book>()
                     bookList
                         .filter {
@@ -81,7 +99,7 @@ open class BookAdapter :
 
                         }
                         .forEach { filteredList.add(it) }
-                    bookListFiltered = filteredList
+                    filteredList
 
                 }
                 return FilterResults().apply { values = bookListFiltered }
@@ -89,12 +107,37 @@ open class BookAdapter :
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
 
-                bookListFiltered = if (results?.values == null)
+                bookListFiltered = if (results?.values == null) {
                     ArrayList()
-                else
+                } else {
                     results.values as ArrayList<Book>
+                }
                 notifyDataSetChanged()
             }
+        }
+    }
+
+    private fun setTitleText(itemView: Book, titleTv: TextView) {
+        if (filterPattern != "") {
+            val startPos: Int =
+                itemView.title.lowercase(Locale.US).indexOf(filterPattern.toString().lowercase())
+            val endPos = startPos + filterPattern.length
+            if (startPos != -1) {
+                val spannable: Spannable = SpannableString(itemView.title)
+                val blueColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(Color.BLUE))
+                val highlightSpan = TextAppearanceSpan(null, Typeface.BOLD, -1, blueColor, null)
+                spannable.setSpan(
+                    highlightSpan,
+                    startPos,
+                    endPos,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                titleTv.text = spannable
+            } else {
+                titleTv.text = itemView.title
+            }
+        } else {
+            titleTv.text = itemView.title
         }
     }
 }
