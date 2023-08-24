@@ -56,6 +56,13 @@ open class BookAdapter :
 
     override fun getItemCount(): Int = bookListFiltered.size
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
     fun addData(list: MutableList<Book>) {
         bookList = list as ArrayList<Book>
         bookListFiltered = bookList

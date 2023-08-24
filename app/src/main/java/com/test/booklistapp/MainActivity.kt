@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
                 DividerItemDecoration.VERTICAL
             )
         )
+        booksRecyclerView.setHasFixedSize(true)
 
         searchView = findViewById<View>(R.id.search_view) as SearchView
         searchView

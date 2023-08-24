@@ -3,16 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="100dp">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="20dp"
         app:layout_constraintStart_toEndOf="@+id/book_icon"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -20,18 +19,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="20dp"
         app:layout_constraintStart_toEndOf="@+id/book_icon"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <RatingBar
         android:id="@+id/book_rating"
+        style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
         android:rating="3.5"
+        android:layout_marginLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/book_icon"
         app:layout_constraintTop_toBottomOf="@+id/body" />
 
@@ -39,7 +39,6 @@
         android:id="@+id/book_icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@color/black"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
