@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="book_item_margin_left">20dp</dimen>
+    <dimen name="book_item_margin_bottom">10dp</dimen>
+    <dimen name="book_item_icon_size">100dp</dimen>
+    <dimen name="book_item_icon_padding">16dp</dimen>
+    <dimen name="recycler_view_margin_top">50dp</dimen>
+    <dimen name="recycler_view_margin_end">15dp</dimen>
+    <dimen name="search_view_margin">5dp</dimen>
+
+</resources>

@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     private fun setUpViews() {
+        //setup RecyclerAiew
         booksRecyclerView = findViewById<View>(R.id.rv_design) as RecyclerView
         booksRecyclerView.addItemDecoration(
             DividerItemDecoration(
@@ -38,22 +39,29 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         )
         booksRecyclerView.setHasFixedSize(true)
 
-        searchView = findViewById<View>(R.id.search_view) as SearchView
-        searchView
-            .setOnQueryTextListener(this)
         booksRecyclerView.layoutManager = LinearLayoutManager(
             this,
             LinearLayoutManager.VERTICAL, false
         )
+
+        //setup SearchView
+        searchView = findViewById<View>(R.id.search_view) as SearchView
+        searchView
+            .setOnQueryTextListener(this)
+
         booksAdapter = BookAdapter()
         booksRecyclerView.adapter = booksAdapter
     }
 
     private fun doObserveWork() {
         booksViewModel = ViewModelProvider(this)[BooksViewModel::class.java]
+
+        //for future use loading large data set
         booksViewModel.isProgressBarVisible().observe(this, Observer {
 
         })
+
+        //render book list whenever change in list is triggered
         booksViewModel.getBookList().observe(this, Observer {
             if (it != null) {
                 renderBookList(it)

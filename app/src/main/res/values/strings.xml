@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BookListApp</string>
+    <string name="search_view_hint">What are you looking for?</string>
 </resources>

@@ -1,7 +1,7 @@
 package com.test.booklistapp.model
 
 import com.google.gson.annotations.SerializedName
-
+//Book entity
 data class Book(
     @SerializedName("title")
     var title: String,

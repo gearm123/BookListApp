@@ -9,8 +9,8 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/book_item_margin_left"
+        android:layout_marginBottom="@dimen/book_item_margin_bottom"
         app:layout_constraintStart_toEndOf="@+id/book_icon"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,8 +18,8 @@
         android:id="@+id/body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/book_item_margin_left"
+        android:layout_marginBottom="@dimen/book_item_margin_bottom"
         app:layout_constraintStart_toEndOf="@+id/book_icon"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -28,22 +28,21 @@
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/book_item_margin_left"
         android:numStars="5"
         android:rating="3.5"
-        android:layout_marginLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/book_icon"
         app:layout_constraintTop_toBottomOf="@+id/body" />
 
     <ImageView
         android:id="@+id/book_icon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:layout_width="@dimen/book_item_icon_size"
+        android:layout_height="@dimen/book_item_icon_size"
+        android:paddingLeft="@dimen/book_item_icon_padding"
+        android:paddingRight="@dimen/book_item_icon_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

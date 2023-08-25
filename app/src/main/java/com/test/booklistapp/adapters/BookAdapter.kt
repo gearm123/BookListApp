@@ -37,9 +37,9 @@ open class BookAdapter :
             body = itemView.findViewById(R.id.body)
             icon = itemView.findViewById(R.id.book_icon)
             rating = itemView.findViewById(R.id.book_rating)
-
         }
 
+        //set list item properties
         fun bind(result: Book) {
             setTitleText(result, title)
             setBodyText(result, body)
@@ -56,6 +56,7 @@ open class BookAdapter :
     )
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+        //bind items to filtered list
         holder.bind(bookListFiltered[position])
         holder.itemView.setOnClickListener {
             Toast.makeText(
@@ -84,6 +85,7 @@ open class BookAdapter :
         notifyDataSetChanged()
     }
 
+    //Filtering using constraint input by title and body
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
@@ -124,6 +126,7 @@ open class BookAdapter :
         }
     }
 
+    //setting title text. highlighting part of text if needed
     private fun setTitleText(itemView: Book, titleTv: TextView) {
         if (filterPattern != "") {
             val startPos: Int =
@@ -139,6 +142,7 @@ open class BookAdapter :
         }
     }
 
+    //setting body text. highlighting part of the text if needed
     private fun setBodyText(itemView: Book, bodyTv: TextView) {
         if (filterPattern != "") {
             val startPos: Int =
@@ -154,6 +158,7 @@ open class BookAdapter :
         }
     }
 
+    //Creating spannable to highlight filtered text
     private fun createSpannable(startPos: Int, baseText: String): Spannable {
         val endPos = startPos + filterPattern.length
         val spannable: Spannable = SpannableString(baseText)
@@ -168,13 +173,12 @@ open class BookAdapter :
         return spannable
     }
 
+    //Setting book icon using Picasso and placeholder using RGB values
     private fun setBookIcon(book: Book, icon: ImageView) {
         val placeHolderColor: Int = book.placeHolder
         val gradientDrawable = GradientDrawable()
         gradientDrawable.shape = GradientDrawable.RECTANGLE
         gradientDrawable.setColor(placeHolderColor)
         Picasso.with(icon.context).load(book.downloadUrl).placeholder(gradientDrawable).into(icon);
-
-
     }
 }
