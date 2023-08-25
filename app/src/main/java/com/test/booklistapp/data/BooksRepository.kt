@@ -2,10 +2,6 @@ package com.test.booklistapp.data
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.ColorSpace
-import com.google.gson.Gson
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import com.test.booklistapp.R
 import com.test.booklistapp.model.Book
 import org.json.JSONArray

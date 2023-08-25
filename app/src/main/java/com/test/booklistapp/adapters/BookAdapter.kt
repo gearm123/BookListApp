@@ -1,6 +1,5 @@
 package com.test.booklistapp.adapters
 
-import android.R.color
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
