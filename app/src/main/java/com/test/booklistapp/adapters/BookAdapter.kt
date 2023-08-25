@@ -1,8 +1,10 @@
 package com.test.booklistapp.adapters
 
+import android.R.color
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.TextAppearanceSpan
@@ -42,7 +44,7 @@ open class BookAdapter :
         fun bind(result: Book) {
             setTitleText(result, title)
             body.text = result.body
-            Picasso.with(icon.context).load(result.downloadUrl).into(icon);
+            setBookIcon(result, icon)
             rating.rating = result.rating.toFloat()
         }
     }
@@ -95,8 +97,10 @@ open class BookAdapter :
                     val filteredList = ArrayList<Book>()
                     bookList
                         .filter {
-                            (it.title.lowercase(Locale.ROOT).contains(constraint!!.toString()
-                                .lowercase(Locale.ROOT)))
+                            (it.title.lowercase(Locale.ROOT).contains(
+                                constraint!!.toString()
+                                    .lowercase(Locale.ROOT)
+                            ))
 
                         }
                         .forEach { filteredList.add(it) }
@@ -121,7 +125,8 @@ open class BookAdapter :
     private fun setTitleText(itemView: Book, titleTv: TextView) {
         if (filterPattern != "") {
             val startPos: Int =
-                itemView.title.lowercase(Locale.ROOT).indexOf(filterPattern.toString().lowercase(Locale.ROOT))
+                itemView.title.lowercase(Locale.ROOT)
+                    .indexOf(filterPattern.toString().lowercase(Locale.ROOT))
             val endPos = startPos + filterPattern.length
             if (startPos != -1) {
                 val spannable: Spannable = SpannableString(itemView.title)
@@ -140,5 +145,15 @@ open class BookAdapter :
         } else {
             titleTv.text = itemView.title
         }
+    }
+
+    private fun setBookIcon(book: Book, icon: ImageView) {
+        val placeHolderColor: Int = book.placeHolder
+        val gradientDrawable = GradientDrawable()
+        gradientDrawable.shape = GradientDrawable.RECTANGLE
+        gradientDrawable.setColor(placeHolderColor)
+        Picasso.with(icon.context).load(book.downloadUrl).placeholder(gradientDrawable).into(icon);
+
+
     }
 }

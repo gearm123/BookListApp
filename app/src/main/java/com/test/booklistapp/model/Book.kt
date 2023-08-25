@@ -9,6 +9,8 @@ data class Book(
     var body: String,
     @SerializedName("rating")
     var rating: Double,
+    @SerializedName("place_holder")
+    var placeHolder: Int,
     @SerializedName("download_url")
     var downloadUrl: String,
 )

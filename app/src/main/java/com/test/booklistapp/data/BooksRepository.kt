@@ -1,6 +1,8 @@
 package com.test.booklistapp.data
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.ColorSpace
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -38,9 +40,16 @@ class BooksRepository {
         val list: MutableList<Book> = ArrayList()
         for (i in 0 until booksArr.length()) {
             val bookObject = booksArr.getJSONObject(i)
-            val book : Book = Book(bookObject.getString("title"),
+            val placeHolderObject = bookObject.getJSONObject("placeholderColor")
+            val red = placeHolderObject.getString("red").toInt()
+            val green = placeHolderObject.getString("green").toInt()
+            val blue = placeHolderObject.getString("blue").toInt()
+            val holderColor: Int = Color.rgb(red,green,blue)
+            val book: Book = Book(
+                bookObject.getString("title"),
                 bookObject.getString("body"),
-                bookObject.getDouble("rating"), bookObject.getString("url"))
+                bookObject.getDouble("rating"), holderColor, bookObject.getString("url")
+            )
             list.add(book)
         }
 
