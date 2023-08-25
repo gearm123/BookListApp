@@ -43,7 +43,7 @@ open class BookAdapter :
 
         fun bind(result: Book) {
             setTitleText(result, title)
-            body.text = result.body
+            setBodyText(result, body)
             setBookIcon(result, icon)
             rating.rating = result.rating.toFloat()
         }
@@ -98,9 +98,12 @@ open class BookAdapter :
                     bookList
                         .filter {
                             (it.title.lowercase(Locale.ROOT).contains(
-                                constraint!!.toString()
+                                constraint.toString()
                                     .lowercase(Locale.ROOT)
-                            ))
+                            )) or it.body.lowercase(Locale.ROOT).contains(
+                                constraint.toString()
+                                    .lowercase(Locale.ROOT)
+                            )
 
                         }
                         .forEach { filteredList.add(it) }
@@ -127,24 +130,43 @@ open class BookAdapter :
             val startPos: Int =
                 itemView.title.lowercase(Locale.ROOT)
                     .indexOf(filterPattern.toString().lowercase(Locale.ROOT))
-            val endPos = startPos + filterPattern.length
             if (startPos != -1) {
-                val spannable: Spannable = SpannableString(itemView.title)
-                val blueColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(Color.BLUE))
-                val highlightSpan = TextAppearanceSpan(null, Typeface.BOLD, -1, blueColor, null)
-                spannable.setSpan(
-                    highlightSpan,
-                    startPos,
-                    endPos,
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-                titleTv.text = spannable
+                titleTv.text = createSpannable(startPos, itemView.title)
             } else {
                 titleTv.text = itemView.title
             }
         } else {
             titleTv.text = itemView.title
         }
+    }
+
+    private fun setBodyText(itemView: Book, bodyTv: TextView) {
+        if (filterPattern != "") {
+            val startPos: Int =
+                itemView.body.lowercase(Locale.ROOT)
+                    .indexOf(filterPattern.toString().lowercase(Locale.ROOT))
+            if (startPos != -1) {
+                bodyTv.text = createSpannable(startPos, itemView.body)
+            } else {
+                bodyTv.text = itemView.body
+            }
+        } else {
+            bodyTv.text = itemView.body
+        }
+    }
+
+    private fun createSpannable(startPos: Int, baseText: String): Spannable {
+        val endPos = startPos + filterPattern.length
+        val spannable: Spannable = SpannableString(baseText)
+        val blueColor = ColorStateList(arrayOf(intArrayOf()), intArrayOf(Color.BLUE))
+        val highlightSpan = TextAppearanceSpan(null, Typeface.BOLD, -1, blueColor, null)
+        spannable.setSpan(
+            highlightSpan,
+            startPos,
+            endPos,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        return spannable
     }
 
     private fun setBookIcon(book: Book, icon: ImageView) {
