@@ -21,11 +21,13 @@ class BooksViewModel(
         return progressBarVisibility
     }
 
-    fun getBookList(): MutableLiveData<MutableList<Book>?> {
+    //return livedata to avoid value modification from outside
+    fun getBookList(): LiveData<MutableList<Book>?> {
         return bookListLive
     }
 
     //launch coroutine to get book list and post change when complete
+    //
     private fun populateBookList() {
         viewModelScope.launch {
             val bookList: MutableList<Book>? = booksRepository.getBooks(application)
