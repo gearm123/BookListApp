@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.booklistapp.adapters.BookAdapter
+import com.test.booklistapp.data.BooksRepository
 import com.test.booklistapp.model.Book
 import com.test.booklistapp.viewmodel.BooksViewModel
+import com.test.booklistapp.viewmodel.ViewModelFactory
 
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
@@ -19,8 +21,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private lateinit var booksAdapter: BookAdapter
     private lateinit var booksRecyclerView: RecyclerView
     private lateinit var searchView: SearchView
-    private lateinit var booksViewModel: BooksViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,7 +54,11 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     private fun doObserveWork() {
-        booksViewModel = ViewModelProvider(this)[BooksViewModel::class.java]
+        //provide view model with dp injection
+        var booksViewModel: BooksViewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(application, BooksRepository())
+        )[BooksViewModel::class.java]
 
         //for future use loading large data set
         booksViewModel.isProgressBarVisible().observe(this, Observer {
